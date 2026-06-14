@@ -1,0 +1,107 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Viewbox x:Key="BatteryIcon"
+             Width="14"
+             Height="14">
+        <Canvas Width="24" Height="24">
+            <Rectangle Canvas.Left="7.22"
+                       Canvas.Top="5.58"
+                       Width="9.56"
+                       Height="16"
+                       RadiusX="2"
+                       RadiusY="2"
+                       Fill="#242423"/>
+
+            <Rectangle Canvas.Left="9"
+                       Canvas.Top="2.84"
+                       Width="6"
+                       Height="2.71"
+                       RadiusX="0.86"
+                       Fill="#242423"/>
+        </Canvas>
+    </Viewbox>
+
+    <Viewbox x:Key="BluetoothIcon"
+             Width="14"
+             Height="14">
+        <Canvas Width="24" Height="24">
+            <Path Data="M7,7 L17,17 L12,22 L12,2 L17,7 L7,17"
+                  Stroke="#242423"
+                  StrokeThickness="2"
+                  StrokeStartLineCap="Round"
+                  StrokeEndLineCap="Round"
+                  StrokeLineJoin="Round"
+                  Fill="Transparent"/>
+        </Canvas>
+    </Viewbox>
+    
+    <Viewbox x:Key="VolumeIcon"
+             Width="14"
+             Height="14">
+        <Canvas Width="24" Height="24">
+            <Path Data="M11,4.702 C11,4.074 10.241,3.759 9.797,4.204 L6.413,7.587 C6.151,7.85 5.793,8 5.416,8 L3,8 C2.448,8 2,8.448 2,9 L2,15 C2,15.552 2.448,16 3,16 L5.416,16 C5.793,16 6.151,16.15 6.413,16.413 L9.796,19.797 C10.24,20.241 11,19.926 11,19.298 Z"
+                  Stroke="#242423"
+                  StrokeThickness="2"
+                  StrokeStartLineCap="Round"
+                  StrokeEndLineCap="Round"
+                  StrokeLineJoin="Round"
+                  Fill="Transparent"/>
+
+            <Path Data="M16,9 C17.333,10.667 17.333,13.333 16,15"
+                  Stroke="#242423"
+                  StrokeThickness="2"
+                  StrokeStartLineCap="Round"
+                  StrokeEndLineCap="Round"
+                  StrokeLineJoin="Round"
+                  Fill="Transparent"/>
+
+            <Path Data="M19.364,18.364 C22.879,14.849 22.879,9.151 19.364,5.636"
+                  Stroke="#242423"
+                  StrokeThickness="2"
+                  StrokeStartLineCap="Round"
+                  StrokeEndLineCap="Round"
+                  StrokeLineJoin="Round"
+                  Fill="Transparent"/>
+        </Canvas>
+    </Viewbox>
+    
+    <Viewbox x:Key="ArrowDownUpIcon"
+             Width="14"
+             Height="14">
+        <Canvas Width="24" Height="24">
+            <Path Data="M3,16 L7,20 L11,16"
+                  Stroke="#242423"
+                  StrokeThickness="2"
+                  StrokeStartLineCap="Round"
+                  StrokeEndLineCap="Round"
+                  StrokeLineJoin="Round"
+                  Fill="Transparent"/>
+
+            <Path Data="M7,20 L7,4"
+                  Stroke="#242423"
+                  StrokeThickness="2"
+                  StrokeStartLineCap="Round"
+                  StrokeEndLineCap="Round"
+                  StrokeLineJoin="Round"
+                  Fill="Transparent"/>
+
+            <Path Data="M21,8 L17,4 L13,8"
+                  Stroke="#242423"
+                  StrokeThickness="2"
+                  StrokeStartLineCap="Round"
+                  StrokeEndLineCap="Round"
+                  StrokeLineJoin="Round"
+                  Fill="Transparent"/>
+
+            <Path Data="M17,4 L17,20"
+                  Stroke="#242423"
+                  StrokeThickness="2"
+                  StrokeStartLineCap="Round"
+                  StrokeEndLineCap="Round"
+                  StrokeLineJoin="Round"
+                  Fill="Transparent"/>
+        </Canvas>
+    </Viewbox>
+
+</ResourceDictionary>
