@@ -32,10 +32,10 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Bg" Property="Background" Value="#9caea9"/>
+                                <Setter TargetName="Bg" Property="Background" Value="#E8EDDF"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="Bg" Property="Background" Value="#e8eddf"/>
+                                <Setter TargetName="Bg" Property="Background" Value="#E8EDDF"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -140,6 +140,142 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="SensorProgressStyle" TargetType="ProgressBar">
+            <Setter Property="Height" Value="12"/>
+            <Setter Property="Minimum" Value="0"/>
+            <Setter Property="Maximum" Value="100"/>
+            <Setter Property="Background" Value="#E5E8DF"/>
+            <Setter Property="Foreground" Value="#FFC857"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ProgressBar">
+                        <Grid ClipToBounds="True">
+                            <Border x:Name="PART_Track"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="6"/>
+                            <Border x:Name="PART_Indicator"
+                                    HorizontalAlignment="Left"
+                                    Background="{TemplateBinding Foreground}"
+                                    CornerRadius="6"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Slider">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Slider">
+                        <Grid Margin="12,0">
+                            <Border Height="6"
+                                    Background="#E5E8DF"
+                                    CornerRadius="4"
+                                    VerticalAlignment="Center"/>
+                            <Track x:Name="PART_Track"
+                                   VerticalAlignment="Center"
+                                   Height="32">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton IsTabStop="False"
+                                                  Command="Slider.DecreaseLarge"
+                                                  Background="Transparent"
+                                                  BorderThickness="0">
+                                        <RepeatButton.Template>
+                                            <ControlTemplate TargetType="RepeatButton">
+                                                <Border Background="Transparent"/>
+                                            </ControlTemplate>
+                                        </RepeatButton.Template>
+                                    </RepeatButton>
+                                </Track.DecreaseRepeatButton>
+
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton IsTabStop="False"
+                                                  Command="Slider.IncreaseLarge"
+                                                  Background="Transparent"
+                                                  BorderThickness="0">
+                                        <RepeatButton.Template>
+                                            <ControlTemplate TargetType="RepeatButton">
+                                                <Border Background="Transparent"/>
+                                            </ControlTemplate>
+                                        </RepeatButton.Template>
+                                    </RepeatButton>
+                                </Track.IncreaseRepeatButton>
+
+                                <Track.Thumb>
+                                    <Thumb Width="24"
+                                           Height="24"
+                                           Background="#242423">
+                                        <Thumb.Template>
+                                            <ControlTemplate TargetType="Thumb">
+                                                <Ellipse Fill="{TemplateBinding Background}"/>
+                                            </ControlTemplate>
+                                        </Thumb.Template>
+                                    </Thumb>
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="Background" Value="#F7F8F2"/>
+            <Setter Property="Foreground" Value="#242423"/>
+            <Setter Property="BorderBrush" Value="#D9DDD2"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bg"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bg" Property="Background" Value="#E8EDDF"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Bg" Property="Background" Value="#DDE4D3"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ActivityHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#F7F8F2"/>
+            <Setter Property="Foreground" Value="#555555"/>
+            <Setter Property="BorderBrush" Value="#E5E5E0"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="ActivityCellStyle" TargetType="DataGridCell">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGridCell">
+                        <Border Background="{TemplateBinding Background}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         </ResourceDictionary>
     </Window.Resources>
     
@@ -180,7 +316,14 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 
-                <Border Grid.Column="0" Background="#FFFFFF"
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                <Border Grid.Row="0"
+                        Background="#FFFFFF"
                         CornerRadius="12"
                         BorderThickness="1"
                         BorderBrush="#E5E5E0"
@@ -242,6 +385,198 @@
                                 Style="{StaticResource PrimaryButtonStyle}"/>
                     </Grid>
                 </Border>
+
+                <Border Grid.Row="1"
+                        Background="#FFFFFF"
+                        CornerRadius="12"
+                        BorderThickness="1"
+                        BorderBrush="#E5E5E0"
+                        Margin="8"
+                        Padding="16">
+                    <Grid VerticalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" Margin="0,0,0,20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0"
+                                       Text="LIVE SENSOR DATA"
+                                       FontWeight="SemiBold"
+                                       Foreground="#555555"
+                                       FontSize="12"
+                                       VerticalAlignment="Center"/>
+
+                            <ContentControl Grid.Column="1"
+                                            Content="{StaticResource ArrowDownUpIcon}"
+                                            VerticalAlignment="Center"/>
+                        </Grid>
+
+                        <Grid Grid.Row="1" Margin="0,0,0,18" VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="X-Axis"
+                                       FontSize="16"
+                                       Foreground="#242423"/>
+
+                            <TextBlock x:Name="TxtSensorX"
+                                       Grid.Row="0"
+                                       Grid.Column="1"
+                                       Text="--"
+                                       FontSize="16"
+                                       Foreground="#242423"/>
+
+                            <ProgressBar x:Name="SensorBarX"
+                                         Grid.Row="1"
+                                         Grid.ColumnSpan="2"
+                                         Value="0"
+                                         Margin="0,10,0,0"
+                                         Style="{StaticResource SensorProgressStyle}"/>
+                        </Grid>
+
+                        <Grid Grid.Row="2" Margin="0,0,0,18" VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="Y-Axis"
+                                       FontSize="16"
+                                       Foreground="#242423"/>
+
+                            <TextBlock x:Name="TxtSensorY"
+                                       Grid.Row="0"
+                                       Grid.Column="1"
+                                       Text="--"
+                                       FontSize="16"
+                                       Foreground="#242423"/>
+
+                            <ProgressBar x:Name="SensorBarY"
+                                         Grid.Row="1"
+                                         Grid.ColumnSpan="2"
+                                         Value="0"
+                                         Margin="0,10,0,0"
+                                         Style="{StaticResource SensorProgressStyle}"/>
+                        </Grid>
+
+                        <Grid Grid.Row="3" Margin="0,0,0,14" VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="Z-Axis"
+                                       FontSize="16"
+                                       Foreground="#242423"/>
+
+                            <TextBlock x:Name="TxtSensorZ"
+                                       Grid.Row="0"
+                                       Grid.Column="1"
+                                       Text="--"
+                                       FontSize="16"
+                                       Foreground="#242423"/>
+
+                            <ProgressBar x:Name="SensorBarZ"
+                                         Grid.Row="1"
+                                         Grid.ColumnSpan="2"
+                                         Value="0"
+                                         Margin="0,10,0,0"
+                                         Style="{StaticResource SensorProgressStyle}"/>
+                        </Grid>
+
+                        <Grid Grid.Row="4" Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0"
+                                       Text="Pitch"
+                                       FontSize="15"
+                                       Foreground="#242423"/>
+
+                            <TextBlock x:Name="TxtSensorPitch"
+                                       Grid.Column="1"
+                                       Text="--"
+                                       FontSize="15"
+                                       Foreground="#242423"/>
+                        </Grid>
+
+                        <Grid Grid.Row="5" Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0"
+                                       Text="Roll"
+                                       FontSize="15"
+                                       Foreground="#242423"/>
+
+                            <TextBlock x:Name="TxtSensorRoll"
+                                       Grid.Column="1"
+                                       Text="--"
+                                       FontSize="15"
+                                       Foreground="#242423"/>
+                        </Grid>
+
+                        <Grid Grid.Row="6" Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0"
+                                       Text="Yaw"
+                                       FontSize="15"
+                                       Foreground="#242423"/>
+
+                            <TextBlock x:Name="TxtSensorYaw"
+                                       Grid.Column="1"
+                                       Text="--"
+                                       FontSize="15"
+                                       Foreground="#242423"/>
+                        </Grid>
+
+                        <Button Grid.Row="7"
+                                Content="Calibrate"
+                                Click="Calibrate_Click"
+                                Style="{StaticResource SecondaryButtonStyle}"/>
+                    </Grid>
+                </Border>
+                </Grid>
                 
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
@@ -264,6 +599,9 @@
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/> 
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
@@ -352,6 +690,80 @@
                                             Margin="0,10,0,0"
                                             ValueChanged="VolumeSensitivitySlider_ValueChanged"/>
                                 </Grid>
+
+                                <Grid Grid.Row="3" Margin="0,14,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Row="0"
+                                               Grid.Column="0"
+                                               Text="Dead zone"
+                                               FontSize="16"
+                                               Foreground="#242423"
+                                               VerticalAlignment="Center"/>
+
+                                    <TextBlock x:Name="TxtVolumeDeadZone"
+                                               Grid.Row="0"
+                                               Grid.Column="1"
+                                               Text="5 deg"
+                                               FontSize="16"
+                                               Foreground="#242423"
+                                               VerticalAlignment="Center"/>
+
+                                    <Slider x:Name="VolumeDeadZoneSlider"
+                                            Grid.Row="1"
+                                            Grid.ColumnSpan="2"
+                                            Minimum="1"
+                                            Maximum="20"
+                                            Value="5"
+                                            TickFrequency="1"
+                                            IsSnapToTickEnabled="True"
+                                            Margin="0,10,0,0"
+                                            ValueChanged="VolumeDeadZoneSlider_ValueChanged"/>
+                                </Grid>
+
+                                <Grid Grid.Row="4" Margin="0,14,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Row="0"
+                                               Grid.Column="0"
+                                               Text="Step size"
+                                               FontSize="16"
+                                               Foreground="#242423"
+                                               VerticalAlignment="Center"/>
+
+                                    <TextBlock x:Name="TxtVolumeStep"
+                                               Grid.Row="0"
+                                               Grid.Column="1"
+                                               Text="1x"
+                                               FontSize="16"
+                                               Foreground="#242423"
+                                               VerticalAlignment="Center"/>
+
+                                    <Slider x:Name="VolumeStepSlider"
+                                            Grid.Row="1"
+                                            Grid.ColumnSpan="2"
+                                            Minimum="1"
+                                            Maximum="5"
+                                            Value="1"
+                                            TickFrequency="1"
+                                            IsSnapToTickEnabled="True"
+                                            Margin="0,10,0,0"
+                                            ValueChanged="VolumeStepSlider_ValueChanged"/>
+                                </Grid>
                             </Grid>
                         </Border>
                         
@@ -364,6 +776,8 @@
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/> 
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
@@ -385,6 +799,147 @@
                                                     Content="{StaticResource ArrowDownUpIcon}"
                                                     VerticalAlignment="Center"/>
                                 </Grid>
+
+                                <Border Grid.Row="1"
+                                        Background="#F7F8F2"
+                                        BorderBrush="#D9DDD2"
+                                        BorderThickness="1"
+                                        CornerRadius="8"
+                                        Padding="3"
+                                        Margin="0,0,0,14">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <RadioButton x:Name="ScrollNormalDirection"
+                                                     Grid.Column="0"
+                                                     GroupName="ScrollDirection"
+                                                     Content="Normal"
+                                                     IsChecked="True"
+                                                     Style="{StaticResource SegmentToggleStyle}"
+                                                     Checked="ScrollDirection_Checked"/>
+
+                                        <RadioButton x:Name="ScrollInvertedDirection"
+                                                     Grid.Column="1"
+                                                     GroupName="ScrollDirection"
+                                                     Content="Inverted"
+                                                     Style="{StaticResource SegmentToggleStyle}"
+                                                     Checked="ScrollDirection_Checked"/>
+                                    </Grid>
+                                </Border>
+
+                                <Grid Grid.Row="2">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Row="0"
+                                               Grid.Column="0"
+                                               Text="Sensitivity"
+                                               FontSize="16"
+                                               Foreground="#242423"
+                                               VerticalAlignment="Center"/>
+
+                                    <TextBlock x:Name="TxtScrollSensitivity"
+                                               Grid.Row="0"
+                                               Grid.Column="1"
+                                               Text="75%"
+                                               FontSize="16"
+                                               Foreground="#242423"
+                                               VerticalAlignment="Center"/>
+
+                                    <Slider x:Name="ScrollSensitivitySlider"
+                                            Grid.Row="1"
+                                            Grid.ColumnSpan="2"
+                                            Minimum="10"
+                                            Maximum="100"
+                                            Value="75"
+                                            TickFrequency="5"
+                                            IsSnapToTickEnabled="True"
+                                            Margin="0,10,0,0"
+                                            ValueChanged="ScrollSensitivitySlider_ValueChanged"/>
+                                </Grid>
+
+                                <Grid Grid.Row="3" Margin="0,14,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Row="0"
+                                               Grid.Column="0"
+                                               Text="Dead zone"
+                                               FontSize="16"
+                                               Foreground="#242423"
+                                               VerticalAlignment="Center"/>
+
+                                    <TextBlock x:Name="TxtScrollDeadZone"
+                                               Grid.Row="0"
+                                               Grid.Column="1"
+                                               Text="6 deg"
+                                               FontSize="16"
+                                               Foreground="#242423"
+                                               VerticalAlignment="Center"/>
+
+                                    <Slider x:Name="ScrollDeadZoneSlider"
+                                            Grid.Row="1"
+                                            Grid.ColumnSpan="2"
+                                            Minimum="1"
+                                            Maximum="25"
+                                            Value="6"
+                                            TickFrequency="1"
+                                            IsSnapToTickEnabled="True"
+                                            Margin="0,10,0,0"
+                                            ValueChanged="ScrollDeadZoneSlider_ValueChanged"/>
+                                </Grid>
+
+                                <Grid Grid.Row="4" Margin="0,14,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Row="0"
+                                               Grid.Column="0"
+                                               Text="Speed"
+                                               FontSize="16"
+                                               Foreground="#242423"
+                                               VerticalAlignment="Center"/>
+
+                                    <TextBlock x:Name="TxtScrollSpeed"
+                                               Grid.Row="0"
+                                               Grid.Column="1"
+                                               Text="100%"
+                                               FontSize="16"
+                                               Foreground="#242423"
+                                               VerticalAlignment="Center"/>
+
+                                    <Slider x:Name="ScrollSpeedSlider"
+                                            Grid.Row="1"
+                                            Grid.ColumnSpan="2"
+                                            Minimum="25"
+                                            Maximum="200"
+                                            Value="100"
+                                            TickFrequency="25"
+                                            IsSnapToTickEnabled="True"
+                                            Margin="0,10,0,0"
+                                            ValueChanged="ScrollSpeedSlider_ValueChanged"/>
+                                </Grid>
                             </Grid>
                         </Border>
                     </Grid>
@@ -398,8 +953,7 @@
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/> 
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
                             <TextBlock Grid.Row="0" 
@@ -408,6 +962,45 @@
                                        Foreground="#555555" 
                                        FontSize="12"
                                        Margin="0,0,0,20"/>
+
+                            <DataGrid x:Name="ActivityLogGrid"
+                                      Grid.Row="1"
+                                      AutoGenerateColumns="False"
+                                      HeadersVisibility="Column"
+                                      CanUserAddRows="False"
+                                      CanUserDeleteRows="False"
+                                      CanUserResizeRows="False"
+                                      CanUserSortColumns="False"
+                                      IsReadOnly="True"
+                                      GridLinesVisibility="Horizontal"
+                                      Background="Transparent"
+                                      BorderThickness="0"
+                                      RowBackground="Transparent"
+                                      AlternatingRowBackground="#F7F8F2"
+                                      HorizontalGridLinesBrush="#E5E5E0"
+                                      VerticalGridLinesBrush="Transparent"
+                                      Foreground="#242423"
+                                      FontSize="12"
+                                      RowHeight="30"
+                                      ColumnHeaderHeight="28"
+                                      ColumnHeaderStyle="{StaticResource ActivityHeaderStyle}"
+                                      CellStyle="{StaticResource ActivityCellStyle}"
+                                      ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Time"
+                                                        Binding="{Binding Time}"
+                                                        Width="72"/>
+                                    <DataGridTextColumn Header="Type"
+                                                        Binding="{Binding Type}"
+                                                        Width="74"/>
+                                    <DataGridTextColumn Header="Event"
+                                                        Binding="{Binding Event}"
+                                                        Width="*"/>
+                                    <DataGridTextColumn Header="Value"
+                                                        Binding="{Binding Value}"
+                                                        Width="70"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
                         </Grid>
                     </Border>
                 </Grid>

@@ -18,18 +18,31 @@ namespace Triki_Knob
 
         public static void VolumeDown()
         {
-            SendMediaKey(VolumeDownKey);
+            VolumeDown(1);
         }
 
         public static void VolumeUp()
         {
-            SendMediaKey(VolumeUpKey);
+            VolumeUp(1);
         }
 
-        private static void SendMediaKey(byte virtualKey)
+        public static void VolumeDown(int steps)
         {
-            keybd_event(virtualKey, 0, KeyEventExtendedKey, UIntPtr.Zero);
-            keybd_event(virtualKey, 0, KeyEventExtendedKey | KeyEventKeyUp, UIntPtr.Zero);
+            SendMediaKey(VolumeDownKey, steps);
+        }
+
+        public static void VolumeUp(int steps)
+        {
+            SendMediaKey(VolumeUpKey, steps);
+        }
+
+        private static void SendMediaKey(byte virtualKey, int steps = 1)
+        {
+            for (var i = 0; i < Math.Clamp(steps, 1, 5); i++)
+            {
+                keybd_event(virtualKey, 0, KeyEventExtendedKey, UIntPtr.Zero);
+                keybd_event(virtualKey, 0, KeyEventExtendedKey | KeyEventKeyUp, UIntPtr.Zero);
+            }
         }
 
         [DllImport("user32.dll")]

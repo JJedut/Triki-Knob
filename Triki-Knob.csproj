@@ -7,6 +7,18 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UseWPF>true</UseWPF>
+        <UseWindowsForms>true</UseWindowsForms>
+        <ApplicationIcon>Assets\ico\256.ico</ApplicationIcon>
     </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="Assets\ico\*.ico">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
+        <EmbeddedResource Include="Assets\ico\256.ico" LogicalName="Assets.ico.256.ico" />
+        <EmbeddedResource Include="Assets\ico\256g.ico" LogicalName="Assets.ico.256g.ico" />
+        <EmbeddedResource Include="Assets\ico\256r.ico" LogicalName="Assets.ico.256r.ico" />
+    </ItemGroup>
 
 </Project>

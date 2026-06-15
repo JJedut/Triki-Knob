@@ -9,6 +9,8 @@ namespace Triki_Knob
         private const double AutoZeroGyroStillThreshold = 2.0;
         private const double AutoZeroMinimumAccelMagnitude = 0.85;
         private const double AutoZeroMaximumAccelMagnitude = 1.15;
+        private const double YawStillDeadbandDegreesPerSecond = 1.0;
+        private const double GyroZBiasSmoothing = 0.02;
 
         private readonly double _gyroGain;
         private readonly double _fallbackDeltaSeconds;
@@ -21,6 +23,7 @@ namespace Triki_Knob
         private double _pitch;
         private double _roll;
         private double _yaw;
+        private double _gyroZBias;
         private double _pitchOffset;
         private double _rollOffset;
         private double _yawOffset;
@@ -111,6 +114,7 @@ namespace Triki_Knob
             _pitch = 0.0;
             _roll = 0.0;
             _yaw = 0.0;
+            _gyroZBias = 0.0;
             _pitchOffset = 0.0;
             _rollOffset = 0.0;
             _yawOffset = 0.0;
@@ -158,9 +162,21 @@ namespace Triki_Knob
 
         private void UpdateAngles(ImuSample sample, double dt)
         {
+            var isStill = IsStillForAutoZero(sample);
+            if (isStill)
+            {
+                _gyroZBias += (sample.GyroZ - _gyroZBias) * GyroZBiasSmoothing;
+            }
+
+            var correctedGyroZ = sample.GyroZ - _gyroZBias;
+            if (isStill && Math.Abs(correctedGyroZ) < YawStillDeadbandDegreesPerSecond)
+            {
+                correctedGyroZ = 0.0;
+            }
+
             var gyroPitch = _pitch + sample.GyroY * _gyroGain * dt;
             var gyroRoll = _roll - sample.GyroX * _gyroGain * dt;
-            _yaw = NormalizeAngle(_yaw - sample.GyroZ * _gyroGain * dt);
+            _yaw = NormalizeAngle(_yaw - correctedGyroZ * _gyroGain * dt);
 
             if (TryGetAccelerometerTilt(sample, out var accelPitch, out var accelRoll))
             {

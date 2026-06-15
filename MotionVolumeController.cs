@@ -15,7 +15,7 @@ namespace Triki_Knob
         private const double BackHorizontalAccelThreshold = 0.45;
         private const double StartPositionPitchThreshold = 18.0;
         private const double StartPositionRollThreshold = 18.0;
-        private const double VolumeYawStepDegrees = 5.0;
+        private const double DefaultVolumeDeadZoneDegrees = 5.0;
         private const double MinimumYawSpeedDegreesPerSecond = 18.0;
         private static readonly TimeSpan VolumeStepCooldown = TimeSpan.FromMilliseconds(80);
 
@@ -28,6 +28,8 @@ namespace Triki_Knob
         private DateTimeOffset _lastVolumeStepUtc = DateTimeOffset.MinValue;
 
         public double SensitivityPercent { get; set; } = 75.0;
+        public double DeadZoneDegrees { get; set; } = DefaultVolumeDeadZoneDegrees;
+        public int StepCount { get; set; } = 1;
         public VolumeRotationDirection Direction { get; set; } = VolumeRotationDirection.Right;
 
         public string? Update(ImuSample sample, VisualOrientation orientation)
@@ -95,7 +97,8 @@ namespace Triki_Knob
 
             var yawDelta = NormalizeAngle(yaw - _volumeReferenceYaw);
             var sensitivity = Math.Clamp(SensitivityPercent, 1.0, 100.0) / 100.0;
-            var requiredStepDegrees = VolumeYawStepDegrees / sensitivity;
+            var deadZoneDegrees = Math.Clamp(DeadZoneDegrees, 1.0, 45.0);
+            var requiredStepDegrees = deadZoneDegrees / sensitivity;
             if (Math.Abs(yawDelta) < requiredStepDegrees)
             {
                 return null;
@@ -115,11 +118,11 @@ namespace Triki_Knob
 
             if (volumeUp)
             {
-                SystemVolumeController.VolumeUp();
+                SystemVolumeController.VolumeUp(StepCount);
                 return "Volume: up";
             }
 
-            SystemVolumeController.VolumeDown();
+            SystemVolumeController.VolumeDown(StepCount);
             return "Volume: down";
         }
 
